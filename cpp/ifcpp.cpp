@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 
   /* 画像処理 */
   cv::Mat grayscaleImage;
-  ConvertColor(inputImage, grayscaleImage);
+  ConvertColor(inputImage, grayscaleImage, cv::COLOR_BGR2GRAY);
 
   /* 処理画像を表示 */
   cv::imshow("Grayscale Image", grayscaleImage);
