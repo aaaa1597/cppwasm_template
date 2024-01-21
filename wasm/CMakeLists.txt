@@ -6,7 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s ALLOW_MEMORY_GROWTH=1 -s USE_ZLIB=1 -
 
 include_directories(/usr/local/include/opencv4)
 
-file(GLOB_RECURSE sources1 "../src/main.cpp")
+file(GLOB_RECURSE sources1 ifwasm.cpp "../src/MainProcess.cpp")
 add_executable(${PROJECT_NAME} ${sources1})
 
 file(GLOB opencv_core "/usr/local/lib/*.a")
