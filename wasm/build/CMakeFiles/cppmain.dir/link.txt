@@ -1,0 +1,1 @@
+/home/jun/emsdk/upstream/emscripten/em++  -s ALLOW_MEMORY_GROWTH=1 -s USE_ZLIB=1 -s ASSERTIONS=1 -s DISABLE_EXCEPTION_CATCHING=0 --bind -O3 -s LLD_REPORT_UNDEFINED -s DEMANGLE_SUPPORT=1 @CMakeFiles/cppmain.dir/objects1.rsp -o cppmain.js @CMakeFiles/cppmain.dir/linkLibs.rsp

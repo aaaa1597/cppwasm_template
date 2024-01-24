@@ -44,7 +44,7 @@ const init = async () => {
     const start1 = performance.now();
     const buffer = Module.creatabuffer(data.data.length);
     Module.HEAPU8.set(data.data, buffer);
-    Module.doOpenCvTask(buffer, data.width, data.height, cnt);
+    Module.convert(buffer, data.width, data.height, cnt);
     Module.destroybuffer(buffer);
     const end1 = performance.now();
     cnt++;

@@ -22,16 +22,17 @@ extern "C" int main(int argc, char **argv) {
   return 0;
 }
 
-size_t creata_buffer(int size) {
+extern "C" {
+size_t EMSCRIPTEN_KEEPALIVE creata_buffer(int size) {
   return (size_t)malloc(size * sizeof(uint8_t));
 }
 
-void destroy_buffer(size_t p) {
+void EMSCRIPTEN_KEEPALIVE destroy_buffer(size_t p) {
   void *pbuf = (void*)p;
   free(pbuf);
 }
 
-void doOpenCvTask(size_t addr, int width, int height, int cnt) {
+void EMSCRIPTEN_KEEPALIVE Convert(size_t addr, int width, int height, int cnt) {
   auto data = reinterpret_cast<void *>(addr);
   cv::Mat rgbaMat(height, width, CV_8UC4, data);
   cv::Mat rgbMat;
@@ -49,9 +50,10 @@ void doOpenCvTask(size_t addr, int width, int height, int cnt) {
     SDL_UnlockSurface(screen);
   SDL_Flip(screen);
 }
+} /* extern "C" */
 
 EMSCRIPTEN_BINDINGS(my_module) {
-  emscripten::function("doOpenCvTask", &doOpenCvTask);
+  emscripten::function("convert", &Convert);
   emscripten::function("creatabuffer", &creata_buffer);
   emscripten::function("destroybuffer", &destroy_buffer);
 }

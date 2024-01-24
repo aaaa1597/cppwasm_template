@@ -33,3 +33,5 @@
 
 cpp/build/
 cpp/.vscode/c_cpp_properties.json
+wasm/build/
+
