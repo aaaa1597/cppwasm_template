@@ -1,3 +1,0 @@
-/home/jun/cppwasm_template/wasm/build/CMakeFiles/cppmain.dir
-/home/jun/cppwasm_template/wasm/build/CMakeFiles/edit_cache.dir
-/home/jun/cppwasm_template/wasm/build/CMakeFiles/rebuild_cache.dir
