@@ -14,8 +14,19 @@ SDL_Surface *screen = nullptr;
 
 } // namespace
 
-extern "C" int main(int argc, char **argv) {
+#define LOG_OUTPUT 0
 
+#if LOG_OUTPUT
+EM_JS(int, console_log, (const char *logstr), {
+  console.log('aaaaa ' + UTF8ToString(logstr));
+  return 0;
+});
+#else
+#define console_log(logstr)
+#endif
+
+extern "C" int main(int argc, char **argv) {
+  console_log(__PRETTY_FUNCTION__);
   SDL_Init(SDL_INIT_VIDEO);
   screen = SDL_SetVideoMode(WIDTH, HEIGHT, 32, SDL_SWSURFACE);
 
@@ -24,15 +35,18 @@ extern "C" int main(int argc, char **argv) {
 
 extern "C" {
 size_t EMSCRIPTEN_KEEPALIVE creata_buffer(int size) {
+  console_log(__PRETTY_FUNCTION__);
   return (size_t)malloc(size * sizeof(uint8_t));
 }
 
 void EMSCRIPTEN_KEEPALIVE destroy_buffer(size_t p) {
+  console_log(__PRETTY_FUNCTION__);
   void *pbuf = (void*)p;
   free(pbuf);
 }
 
 void EMSCRIPTEN_KEEPALIVE Convert(size_t addr, int width, int height, int cnt) {
+  console_log(__PRETTY_FUNCTION__);
   auto data = reinterpret_cast<void *>(addr);
   cv::Mat rgbaMat(height, width, CV_8UC4, data);
   cv::Mat rgbMat;
